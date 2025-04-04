@@ -39,5 +39,5 @@
 }
 
 .MoviePoster:hover .message {
-  opacity: 1; /* Shows the message on hover */
+  opacity: 1; 
 }
