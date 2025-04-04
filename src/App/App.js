@@ -1,8 +1,8 @@
 import './App.css';
 import searchIcon from '../icons/search.png';
 import { useState, useEffect } from 'react';
-import moviePosters from './data/movie_posters';
-import MoviesContainer from '../Movi`esContainer/MoviesContainer';
+import moviePosters from '../data/movie_posters';
+import MoviesContainer from '../MoviesContainer/MoviesContainer';
 
 const posters_path = moviePosters
 
@@ -13,7 +13,7 @@ function App() {
 
   const [movies, setMovies] = useState([]);
 
-  useEffect(() => {moviePosters},[])
+  useEffect(() => {setMovies(moviePosters || [])},[])
 
   return (
     <main className='App'>
