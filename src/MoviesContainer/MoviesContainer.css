@@ -1,0 +1,8 @@
+.movies-container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  margin-top: 50px;
+  background-color: steelblue;
+  padding: 20px;
+}

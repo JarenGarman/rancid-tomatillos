@@ -26,3 +26,9 @@ p {
   margin-top: 50px;
   color: white;
 }
+
+.MoviesContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}

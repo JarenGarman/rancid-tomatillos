@@ -13,13 +13,13 @@ function Movies({ movies }) {
       id={movie.id}
       poster={movie.poster_path}
       title={movie.title}
-      vote_count={movie.vote_counkt}
+      vote_count={movie.vote_count}
     />
     )
   }) 
 
   return (
-      <section className='MoviesContainer'>
+      <section className='movies-container'>
         { movieCards }
       </section>
   );

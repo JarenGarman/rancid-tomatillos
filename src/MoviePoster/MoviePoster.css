@@ -1,0 +1,14 @@
+.MoviePoster {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgb(12, 2, 2);
+  margin: 50px;
+  border-radius: 10px;
+}
+
+.poster_image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
