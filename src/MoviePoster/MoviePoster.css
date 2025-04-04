@@ -3,6 +3,8 @@
   margin: 1em;
   border-radius: 1em;
   width: 15em;
+  position: relative; /* Ensure message is positioned relative to the poster */
+  overflow: hidden; /* To make sure message doesn't go outside the border */
 }
 
 .poster_image {
@@ -10,7 +12,6 @@
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
 }
-
 
 .MoviePoster:hover {
   transform: scale(1.1);
@@ -20,4 +21,23 @@
   font-size: 1.4em;
   color: black;
   margin: 0;
+}
+
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  text-align: center;
+}
+
+.MoviePoster:hover .message {
+  opacity: 1; /* Shows the message on hover */
 }
