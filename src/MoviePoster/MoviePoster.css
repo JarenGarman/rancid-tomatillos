@@ -11,6 +11,11 @@
   border-top-right-radius: 1em;
 }
 
+
+.MoviePoster:hover {
+  transform: scale(1.1);
+}
+
 .vote_count {
   font-size: 1.4em;
   color: black;
