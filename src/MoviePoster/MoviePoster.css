@@ -11,8 +11,38 @@
   border-top-right-radius: 1em;
 }
 
-.vote_count {
+.votes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.4em;
-  color: black;
+}
+
+.votes button {
+  font-size: 1.6em;
+  border: none;
+  background-color: white;
+  color: #89b4fa;
+  display: inline;
+  margin: 0 .2em;
+}
+
+.votes button:hover {
+  transform: scale(1.1);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.upvote:active {
+  color: #a6e3a1;
+}
+
+.downvote:active {
+  color: #fab387;
+}
+
+.vote_count {
+  display: inline;
   margin: 0;
+  color: black;
 }
