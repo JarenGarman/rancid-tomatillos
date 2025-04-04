@@ -1,0 +1,18 @@
+.MoviePoster {
+  background-color: white;
+  margin: 1em;
+  border-radius: 1em;
+  width: 15em;
+}
+
+.poster_image {
+  width: 100%;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+}
+
+.vote_count {
+  font-size: 1.4em;
+  color: black;
+  margin: 0;
+}
