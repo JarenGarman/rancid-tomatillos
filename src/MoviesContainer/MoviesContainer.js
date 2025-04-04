@@ -20,7 +20,7 @@ function Movies({ movies }) {
 
   return (
       <section className='MoviesContainer'>
-        <p>We'll make some movie posters show up here!</p>
+        { movieCards }
       </section>
   );
 }
