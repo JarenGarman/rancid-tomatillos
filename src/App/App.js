@@ -11,9 +11,13 @@ const posters_path = moviePosters
 
 function App() {
 
+  function getMovies(){
+    setMovies(moviePosters || []) //we are simulating defining our network reuqest in a separate function
+  }
   const [movies, setMovies] = useState([]);
 
-  useEffect(() => {setMovies(moviePosters || [])},[])
+
+  useEffect(() => getMovies,[])
 
   return (
     <main className='App'>
