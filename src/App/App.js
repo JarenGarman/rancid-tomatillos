@@ -1,8 +1,7 @@
-import './App.css';
-import searchIcon from '../icons/search.png';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import moviePosters from '../data/movie_posters';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
+import './App.css';
 
 const posters_path = moviePosters
 
@@ -12,19 +11,25 @@ const posters_path = moviePosters
 function App() {
 
   function getMovies(){
-    setMovies(moviePosters || []) //we are simulating defining our network reuqest in a separate function
+    setMovies(moviePosters || []) //we are simulating defining our network request in a separate function
   }
   const [movies, setMovies] = useState([]);
 
 
   useEffect(() => getMovies,[])
 
+  const vote = (id, modifier = 1) => {
+    const movie = movies.filter(movie => movie.id === id)[0]
+    movie.vote_count += (1 * modifier)
+    setMovies([...movies])
+  }
+
   return (
     <main className='App'>
       <header>
         <h1>rancid tomatillos</h1>
       </header>
-      <MoviesContainer movies = {moviePosters}/>
+      <MoviesContainer movies = {moviePosters} vote = {vote}/>
     </main>
   );
 }
