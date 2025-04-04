@@ -1,8 +1,6 @@
 # Rancid Tomatillos
 ![Rancid Tomatillos](https://media.giphy.com/media/pyHTKJ4G9WGQKd12cl/giphy.gif?cid=790b7611q9ee3143cowb8yau67dmgqj2n97l0742h9b675fz&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 
-Here’s your README with Rancid Tomatillos speaking in the first person—fun, engaging, and still informative!
-
 ⸻
 
 🎬 Hey, I’m Rancid Tomatillos!
