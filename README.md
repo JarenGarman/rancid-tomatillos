@@ -35,7 +35,7 @@ Nice to meet you! I’m a React-powered movie app, here to help you browse films
 
 ### Steps to Install & Run
 
-1. Clone me to your local machine: `git clone <https://github.com/JarenGarman/rancid-tomatillos.git>`
+1. Clone me to your local machine: `git clone https://github.com/JarenGarman/rancid-tomatillos.git`
 2. Enter my directory like stepping into a theater: `cd rancid-tomatillos`
 3. Install my dependencies (I need my essentials!): `npm install`
 4. Start me up and let’s go: `npm start`
