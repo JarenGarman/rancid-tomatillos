@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import fetchMovies from '../apiCalls';
+import getMovies from '../apiCalls';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.css';
 // import movieDetails from '../data/movie_details';
@@ -8,16 +8,14 @@ function App() {
 
   const [movies, setMovies] = useState([]);
 
-  function getMovies(){
-    setMovies(fetchMovies || [])
-  }
-
-  useEffect(() => getMovies,[])
+  useEffect(() => {
+    getMovies(setMovies)
+  }, [])
 
   const vote = (id, votes_change) => {
     const movie = movies.find(movie => movie.id === id)
     movie.vote_count += votes_change
-    setMovies([...movies, movie])
+    setMovies([...movies])
   }
 
   return (
