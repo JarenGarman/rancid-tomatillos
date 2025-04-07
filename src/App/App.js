@@ -31,7 +31,6 @@ function App() {
               vote={vote}
               selectMovie={setSelectedMovie} />
       }
-      <MoviesContainer movies = {movies} vote = {vote}/>
     </main>
   );
 }
