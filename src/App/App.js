@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import getMovies from '../apiCalls';
+import { getMovies, getMovie } from '../apiCalls';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.css';
@@ -29,7 +29,8 @@ function App() {
           : <MoviesContainer
               movies={movies}
               vote={vote}
-              selectMovie={setSelectedMovie} />
+              getMovie={getMovie}
+              setSelectedMovie={setSelectedMovie} />
       }
     </main>
   );

@@ -1,13 +1,13 @@
 import './MoviePoster.css';
 
-function MoviePoster({ id, poster, vote_count, vote, selectMovie }) {
+function MoviePoster({ id, poster, vote_count, vote, getMovie, setSelectedMovie }) {
   return (
     <section className='MoviePoster'>
       <img 
         className='poster_image' 
         src= {poster} 
         alt="poster goes here"
-        onClick={selectMovie}
+        onClick={() => getMovie(id, setSelectedMovie)}
         style={{ cursor: 'pointer' }}
         />
       <div className='votes'>
