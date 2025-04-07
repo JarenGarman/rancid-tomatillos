@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
-import moviePosters from '../data/movie_posters';
+import getMovies from '../apiCalls';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import './App.css';
-
-const posters_path = moviePosters
-
-// Example imports (for later):
 // import movieDetails from '../data/movie_details';
 
 function App() {
@@ -22,6 +18,15 @@ function App() {
   const vote = (id, modifier = 1) => {
     const movie = movies.filter(movie => movie.id === id)[0]
     movie.vote_count += (1 * modifier)
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    getMovies(setMovies)
+  }, [])
+
+  const vote = (id, votes_change) => {
+    const movie = movies.find(movie => movie.id === id)
+    movie.vote_count += votes_change
     setMovies([...movies])
   }
 
@@ -38,6 +43,7 @@ function App() {
               vote={vote} 
               selectMovie={setSelectedMovie} />
       }
+      <MoviesContainer movies = {movies} vote = {vote}/>
     </main>
   );
 }

@@ -11,7 +11,7 @@ function MoviePoster({ id, poster, vote_count, vote, selectMovie }) {
         style={{ cursor: 'pointer' }}
         />
       <div className='votes'>
-        <button className='upvote' onClick={() => vote(id)}>↑</button>
+        <button className='upvote' onClick={() => vote(id, 1)}>↑</button>
         <p className='vote_count'>{vote_count}</p>
         <button className='downvote' onClick={() => vote(id, -1)}>↓</button>
       </div>
