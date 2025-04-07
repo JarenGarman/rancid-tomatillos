@@ -22,10 +22,11 @@ function App() {
     <main className='App'>
       <header>
         <h1>rancid tomatillos</h1>
+        {selectedMovie && <button onClick={() => setSelectedMovie(null)}>⌂</button>}
       </header>
       {
         selectedMovie ?
-          <MovieDetails movie= {selectedMovie} goBack={() => setSelectedMovie(null)} />
+          <MovieDetails movie= {selectedMovie} />
           : <MoviesContainer
               movies={movies}
               vote={vote}
