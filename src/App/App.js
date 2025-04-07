@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getMovies, getMovie } from '../apiCalls';
+import { getMovie, getMovies } from '../apiCalls';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.css';
