@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import getMovies from '../apiCalls';
+import MovieDetails from '../MovieDetails/MovieDetails';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.css';
-// import movieDetails from '../data/movie_details';
 
 function App() {
-
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     getMovies(setMovies)
@@ -23,6 +23,14 @@ function App() {
       <header>
         <h1>rancid tomatillos</h1>
       </header>
+      {
+        selectedMovie ?
+          <MovieDetails movie= {selectedMovie} goBack={() => setSelectedMovie(null)} />
+          : <MoviesContainer
+              movies={movies}
+              vote={vote}
+              selectMovie={setSelectedMovie} />
+      }
       <MoviesContainer movies = {movies} vote = {vote}/>
     </main>
   );
