@@ -1,7 +1,7 @@
+import MoviePoster from '../MoviePoster/MoviePoster';
 import './MoviesContainer.css';
-import MoviePoster from '../MoviePoster/MoviePoster'
 
-function Movies({ movies }) {
+function Movies({ movies, vote }) {
   if (!movies) {
     <h2>Loading...</h2>;
   }
@@ -12,11 +12,11 @@ function Movies({ movies }) {
       key={movie.id}
       id={movie.id}
       poster={movie.poster_path}
-      title={movie.title}
       vote_count={movie.vote_count}
+      vote={vote}
     />
     )
-  }) 
+  })
 
   return (
       <section className='movies-container'>
@@ -24,5 +24,5 @@ function Movies({ movies }) {
       </section>
   );
 }
-  
+
 export default Movies;
