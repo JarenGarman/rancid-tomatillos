@@ -18,9 +18,9 @@ function App() {
 
   useEffect(() => getMovies,[])
 
-  const vote = (id, modifier = 1) => {
-    const movie = movies.filter(movie => movie.id === id)[0]
-    movie.vote_count += (1 * modifier)
+  const vote = (id, votes_change) => {
+    const movie = movies.find(movie => movie.id === id)
+    movie.vote_count += votes_change
     setMovies([...movies])
   }
 
