@@ -1,20 +1,16 @@
 import { useEffect, useState } from 'react';
-import moviePosters from '../data/movie_posters';
+import fetchMovies from '../apiCalls';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.css';
-
-const posters_path = moviePosters
-
-// Example imports (for later):
 // import movieDetails from '../data/movie_details';
 
 function App() {
 
-  function getMovies(){
-    setMovies(moviePosters || []) //we are simulating defining our network request in a separate function
-  }
   const [movies, setMovies] = useState([]);
 
+  function getMovies(){
+    setMovies(fetchMovies || [])
+  }
 
   useEffect(() => getMovies,[])
 
@@ -29,7 +25,7 @@ function App() {
       <header>
         <h1>rancid tomatillos</h1>
       </header>
-      <MoviesContainer movies = {moviePosters} vote = {vote}/>
+      <MoviesContainer movies = {movies} vote = {vote}/>
     </main>
   );
 }
