@@ -7,9 +7,9 @@ describe("Main Page", () => {
       "GET",
       "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies",
       posters
-    );
-    cy.visit("http://localhost:3000/");
+    ).visit("http://localhost:3000/");
   });
+
   it("displays title and movies on page load", () => {
     cy.get("h1")
       .contains("rancid tomatillos")
