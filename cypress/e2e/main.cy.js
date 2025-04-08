@@ -13,6 +13,8 @@ describe("Main Page", () => {
   it("displays title and movies on page load", () => {
     cy.get("h1")
       .contains("rancid tomatillos")
+      .get("header button")
+      .should("not.exist")
       .get(".movies-container")
       .find(".MoviePoster")
       .should("have.length", 4)
@@ -86,6 +88,8 @@ describe("Main Page", () => {
       .click()
       .get("h1")
       .contains("rancid tomatillos")
+      .get("header button")
+      .should("not.exist")
       .get(".movies-container")
       .find(".MoviePoster")
       .should("have.length", 4)
