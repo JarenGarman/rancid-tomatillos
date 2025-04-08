@@ -1,30 +1,38 @@
-import './App.css';
-import searchIcon from '../icons/search.png';
-import { useState, useEffect } from 'react';
-import moviePosters from '../data/movie_posters';
+import { useEffect, useState } from 'react';
+import { getMovie, getMovies } from '../apiCalls';
+import MovieDetails from '../MovieDetails/MovieDetails';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
-
-const posters_path = moviePosters
-
-// Example imports (for later):
-// import movieDetails from '../data/movie_details';
+import './App.css';
 
 function App() {
-
-  function getMovies(){
-    setMovies(moviePosters || []) //we are simulating defining our network reuqest in a separate function
-  }
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
+  useEffect(() => {
+    getMovies(setMovies)
+  }, [])
 
-  useEffect(() => getMovies,[])
+  const vote = (id, votes_change) => {
+    const movie = movies.find(movie => movie.id === id)
+    movie.vote_count += votes_change
+    setMovies([...movies])
+  }
 
   return (
     <main className='App'>
       <header>
         <h1>rancid tomatillos</h1>
+        {selectedMovie && <button onClick={() => setSelectedMovie(null)}>⌂</button>}
       </header>
-      <MoviesContainer movies = {moviePosters}/>
+      {
+        selectedMovie ?
+          <MovieDetails movie= {selectedMovie} />
+          : <MoviesContainer
+              movies={movies}
+              vote={vote}
+              getMovie={getMovie}
+              setSelectedMovie={setSelectedMovie} />
+      }
     </main>
   );
 }
