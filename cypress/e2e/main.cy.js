@@ -54,6 +54,21 @@ describe("Main Page", () => {
         "have.attr",
         "src",
         "https://image.tmdb.org/t/p/original//nMKdUUepR0i5zn0y1T4CsSB5chy.jpg"
+      )
+      .get("h2")
+      .contains("The Dark Knight (2008)")
+      .get(".Genres")
+      .find("h3")
+      .should("have.length", 4)
+      .get("h3")
+      .first()
+      .contains("Drama")
+      .get("h3")
+      .last()
+      .contains("Thriller")
+      .get("p")
+      .contains(
+        "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker."
       );
   });
 });
