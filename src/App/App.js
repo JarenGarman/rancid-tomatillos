@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import getMovies from '../apiCalls';
+import { getMovie, getMovies } from '../apiCalls';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.css';
@@ -22,16 +22,17 @@ function App() {
     <main className='App'>
       <header>
         <h1>rancid tomatillos</h1>
+        {selectedMovie && <button onClick={() => setSelectedMovie(null)}>⌂</button>}
       </header>
       {
         selectedMovie ?
-          <MovieDetails movie= {selectedMovie} goBack={() => setSelectedMovie(null)} />
+          <MovieDetails movie= {selectedMovie} />
           : <MoviesContainer
               movies={movies}
               vote={vote}
-              selectMovie={setSelectedMovie} />
+              getMovie={getMovie}
+              setSelectedMovie={setSelectedMovie} />
       }
-      <MoviesContainer movies = {movies} vote = {vote}/>
     </main>
   );
 }
