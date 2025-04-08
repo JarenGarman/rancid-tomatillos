@@ -15,6 +15,7 @@
 
 .MoviePoster:hover {
   transform: scale(1.1);
+  cursor: pointer;
 }
 
 .votes {
@@ -50,6 +51,7 @@
 .vote_count {
   display: inline;
   margin: 0;
+  color: black;
 }
 
 .message {
@@ -69,5 +71,4 @@
 
 .MoviePoster:hover .message {
   opacity: 1;
-  color: black;
 }
