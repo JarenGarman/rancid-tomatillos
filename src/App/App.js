@@ -10,13 +10,13 @@ function App() {
 
   useEffect(() => {
     getMovies(setMovies)
-  }, [])
+  }, []);
 
   const vote = (id, votes_change) => {
-    const movie = movies.find(movie => movie.id === id)
-    movie.vote_count += votes_change
-    setMovies([...movies])
-  }
+    const movie = movies.find(movie => movie.id === id);
+    movie.vote_count += votes_change;
+    setMovies([...movies]);
+  };
 
   return (
     <main className='App'>
@@ -26,7 +26,7 @@ function App() {
       </header>
       {
         selectedMovie ?
-          <MovieDetails movie= {selectedMovie} />
+          <MovieDetails movie={selectedMovie} />
           : <MoviesContainer
               movies={movies}
               vote={vote}

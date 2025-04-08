@@ -3,9 +3,6 @@ import './MoviePoster.css';
 function MoviePoster({ id, poster, vote_count, vote, getMovie, setSelectedMovie }) {
   return (
     <section className='MoviePoster'>
-      <img className='poster_image' src= {poster} alt="poster goes here"/>
-      <p className='vote_count'>{vote_count}</p>
-      <div className="message">Click me for more!</div>
       <img 
         className='poster_image' 
         src= {poster} 
@@ -13,6 +10,8 @@ function MoviePoster({ id, poster, vote_count, vote, getMovie, setSelectedMovie 
         onClick={() => getMovie(id, setSelectedMovie)}
         style={{ cursor: 'pointer' }}
         />
+      <p className='vote_count'>{vote_count}</p>
+      <div className="message">Click me for more!</div>
       <div className='votes'>
         <button className='upvote' onClick={() => vote(id, 1)}>↑</button>
         <p className='vote_count'>{vote_count}</p>
