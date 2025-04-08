@@ -16,6 +16,9 @@ function App() {
     const movie = movies.find(movie => movie.id === id);
     movie.vote_count += votes_change;
     setMovies([...movies]);
+
+    const direction = votes_change > 0 ? "up" : "down";
+    
   };
 
   return (
