@@ -37,4 +37,23 @@ describe("Main Page", () => {
       .last()
       .contains("27642");
   });
+
+  it("displays movie details when poster clicked", () => {
+    cy.intercept(
+      "GET",
+      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155",
+      details
+    )
+      .get(".movies-container")
+      .find(".MoviePoster")
+      .first()
+      .click()
+      .get(".MovieDetails")
+      .get("img")
+      .should(
+        "have.attr",
+        "src",
+        "https://image.tmdb.org/t/p/original//nMKdUUepR0i5zn0y1T4CsSB5chy.jpg"
+      );
+  });
 });
