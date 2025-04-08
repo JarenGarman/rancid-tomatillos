@@ -3,6 +3,9 @@ import './MoviePoster.css';
 function MoviePoster({ id, poster, vote_count, vote, getMovie, setSelectedMovie }) {
   return (
     <section className='MoviePoster'>
+      <img className='poster_image' src= {poster} alt="poster goes here"/>
+      <p className='vote_count'>{vote_count}</p>
+      <div className="message">Click me for more!</div>
       <img 
         className='poster_image' 
         src= {poster} 
