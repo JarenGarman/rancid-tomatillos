@@ -118,7 +118,7 @@ describe("Main Page", () => {
   it("can vote up or down on any particular movie", () => {
     cy.intercept(
       "GET",
-      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/
+      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies"
     )
       .get(".movies-container")
       .find(".MoviePoster")
