@@ -22,7 +22,7 @@ function App() {
     updateVote(id,direction)
     .then((updatedMovie) => {
       setMovies(prevMovies => {
-        return prevMovies.map( movie => {
+        return prevMovies.map( movie => { //prevMovies is provided by React's updater function. Allows update of state based on previous value, ensures state is updated without direct mutation.
           return movie.id === updatedMovie.id ? updatedMovie : movie
         })
       })
