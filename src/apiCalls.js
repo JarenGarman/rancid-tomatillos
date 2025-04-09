@@ -19,7 +19,7 @@ export function getMovie(id, setSelectedMovie) {
 
 export function updateVote(id, voteDirection) {
   const url = baseURL + "/movies/" + id
-  return fetch((url), {
+  return fetch((url), { //adding return here beca
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ vote_direction: voteDirection })
