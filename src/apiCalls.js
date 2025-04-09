@@ -19,14 +19,11 @@ export function getMovie(id, setSelectedMovie) {
 
 export function updateVote(id, voteDirection) {
   const url = baseURL + "/movies/" + id
-  fetch((url), {
+  return fetch((url), {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ vote_direction: voteDirection })
   })
     .then((response) => response.json())
-    .then((updatedMovie) => {
-      console.log("Updated Movie:", updatedMovie);
-    })
     .catch((error) => console.error('Error updating vote:', error));
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getMovie, getMovies } from '../apiCalls';
+import { getMovie, getMovies, updateVote } from '../apiCalls';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.css';
@@ -18,7 +18,14 @@ function App() {
     setMovies([...movies]);
 
     const direction = votes_change > 0 ? "up" : "down";
-    
+    updateVote(id,direction)
+    .then((updatedMovie) => {
+      setMovies(prevMovies => {
+        return prevMovies.map( movie => {
+          return movie.id === updatedMovie.id ? updatedMovie : movie
+        })
+      })
+    })
   };
 
   return (
