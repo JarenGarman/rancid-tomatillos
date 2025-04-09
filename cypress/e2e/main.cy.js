@@ -114,4 +114,44 @@ describe("Main Page", () => {
       .last()
       .contains("27642");
   });
+
+  it("can vote up or down on any particular movie", () => {
+    cy.intercept(
+      "GET",
+      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/
+    )
+      .get(".movies-container")
+      .find(".MoviePoster")
+      .first()
+      .click()
+      .get("header button")
+      .click()
+      .get("h1")
+      .contains("rancid tomatillos")
+      .get("header button")
+      .should("not.exist")
+      .get(".movies-container")
+      .find(".MoviePoster")
+      .should("have.length", 4)
+      .get(".poster_image")
+      .first()
+      .should(
+        "have.attr",
+        "src",
+        "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+      )
+      .get(".poster_image")
+      .last()
+      .should(
+        "have.attr",
+        "src",
+        "https://image.tmdb.org/t/p/original//d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg"
+      )
+      .get(".vote_count")
+      .first()
+      .contains("32544")
+      .get(".vote_count")
+      .last()
+      .contains("27642");
+    })
 });
