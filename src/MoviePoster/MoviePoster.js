@@ -1,20 +1,13 @@
 import "./MoviePoster.css";
 
-function MoviePoster({
-  id,
-  poster,
-  vote_count,
-  vote,
-  getMovie,
-  setSelectedMovie,
-}) {
+function MoviePoster({ id, poster, vote_count, vote, selectMovie }) {
   return (
     <section className="MoviePoster">
       <img
         className="poster_image"
         src={poster}
         alt="poster goes here"
-        onClick={() => getMovie(id, setSelectedMovie)}
+        onClick={() => selectMovie(id)}
       />
       <div className="message">Click me for more!</div>
       <div className="votes">

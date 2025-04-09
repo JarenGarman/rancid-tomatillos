@@ -22,6 +22,10 @@ function App() {
     });
   };
 
+  const selectMovie = (id) => {
+    getMovie(id).then((movie) => setSelectedMovie(movie));
+  };
+
   return (
     <main className="App">
       <header>
@@ -36,8 +40,7 @@ function App() {
         <MoviesContainer
           movies={movies}
           vote={vote}
-          getMovie={getMovie}
-          setSelectedMovie={setSelectedMovie}
+          selectMovie={selectMovie}
         />
       )}
     </main>

@@ -1,30 +1,25 @@
-import MoviePoster from '../MoviePoster/MoviePoster';
-import './MoviesContainer.css';
+import MoviePoster from "../MoviePoster/MoviePoster";
+import "./MoviesContainer.css";
 
-function MoviesContainer({ movies, vote, getMovie, setSelectedMovie }) {
+function MoviesContainer({ movies, vote, selectMovie }) {
   if (!movies) {
     return <h2>Loading...</h2>;
   }
 
-  const movieCards = movies.map(movie => {
-    return(
+  const movieCards = movies.map((movie) => {
+    return (
       <MoviePoster
         key={movie.id}
         id={movie.id}
         poster={movie.poster_path}
         vote_count={movie.vote_count}
         vote={vote}
-        getMovie={getMovie}
-        setSelectedMovie={setSelectedMovie}
+        selectMovie={selectMovie}
       />
     );
   });
 
-  return (
-    <section className='movies-container'>
-      { movieCards }
-    </section>
-  );
+  return <section className="movies-container">{movieCards}</section>;
 }
 
 export default MoviesContainer;

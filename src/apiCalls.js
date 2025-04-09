@@ -8,11 +8,10 @@ export function getMovies() {
     .catch((e) => console.log(e));
 }
 
-export function getMovie(id, setSelectedMovie) {
+export function getMovie(id) {
   const url = baseURL + "/movies/" + id;
-  fetch(url)
+  return fetch(url)
     .then((response) => response.json())
-    .then((data) => setSelectedMovie(data))
     .catch((e) => console.log(e));
 }
 
