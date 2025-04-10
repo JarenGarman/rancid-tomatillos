@@ -41,6 +41,27 @@ describe("Main Page", () => {
       .last()
       .should("contain", "27642");
   });
+});
+
+describe("Movie Details", () => {
+  beforeEach(() => {
+    cy.intercept(
+      "GET",
+      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies",
+      {
+        fixture: "movie_posters.json",
+      }
+    )
+      .visit("http://localhost:3000/")
+      .url()
+      .should("eq", "http://localhost:3000/")
+      .getBySel("movies-container")
+      .find('[data-cy="MoviePoster"]')
+      .first()
+      .click()
+      .url()
+      .should("eq", "http://localhost:3000/155");
+  });
 
   it("displays movie details when poster clicked", () => {
     cy.intercept(
@@ -50,12 +71,6 @@ describe("Main Page", () => {
         fixture: "movie_details.json",
       }
     )
-      .getBySel("movies-container")
-      .find('[data-cy="MoviePoster"]')
-      .first()
-      .click()
-      .url()
-      .should("eq", "http://localhost:3000/155")
       .getBySel("MovieDetails")
       .getBySel("movie_backdrop")
       .should(
@@ -89,12 +104,6 @@ describe("Main Page", () => {
         fixture: "movie_details.json",
       }
     )
-      .getBySel("movies-container")
-      .find('[data-cy="MoviePoster"]')
-      .first()
-      .click()
-      .url()
-      .should("eq", "http://localhost:3000/155")
       .getBySel("home")
       .click()
       .getBySel("title")
@@ -125,6 +134,24 @@ describe("Main Page", () => {
       .last()
       .should("contain", "27642");
   });
+});
+
+describe("Voting", () => {
+  beforeEach(() => {
+    cy.intercept(
+      "GET",
+      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies",
+      {
+        fixture: "movie_posters.json",
+      }
+    )
+      .visit("http://localhost:3000/")
+      .url()
+      .should("eq", "http://localhost:3000/")
+      .getBySel("vote_count")
+      .first()
+      .should("contain", "32544");
+  });
 
   it("can upvote any particular movie", () => {
     cy.intercept(
@@ -134,8 +161,6 @@ describe("Main Page", () => {
         fixture: "movie_upvote.json",
       }
     ).as("updateVote");
-
-    cy.getBySel("vote_count").first().should("contain", "32544");
 
     cy.getBySel("upvote").first().click();
 
@@ -152,8 +177,6 @@ describe("Main Page", () => {
         fixture: "movie_downvote.json",
       }
     ).as("updateVote");
-
-    cy.getBySel("vote_count").first().should("contain", "32544");
 
     cy.getBySel("downvote").first().click();
 
