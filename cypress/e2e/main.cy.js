@@ -7,7 +7,10 @@ describe("Main Page", () => {
       "GET",
       "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies",
       posters
-    ).visit("http://localhost:3000/");
+    )
+      .visit("http://localhost:3000/")
+      .url()
+      .should("eq", "http://localhost:3000/");
   });
 
   it("displays title and movies on page load", () => {
@@ -50,6 +53,8 @@ describe("Main Page", () => {
       .find(".MoviePoster")
       .first()
       .click()
+      .url()
+      .should("eq", "http://localhost:3000/155")
       .get(".MovieDetails")
       .get("img")
       .should(
@@ -84,6 +89,8 @@ describe("Main Page", () => {
       .find(".MoviePoster")
       .first()
       .click()
+      .url()
+      .should("eq", "http://localhost:3000/155")
       .get("header a")
       .click()
       .get("h1")
@@ -112,6 +119,8 @@ describe("Main Page", () => {
       .contains("32544")
       .get(".vote_count")
       .last()
-      .contains("27642");
+      .contains("27642")
+      .url()
+      .should("eq", "http://localhost:3000/");
   });
 });
