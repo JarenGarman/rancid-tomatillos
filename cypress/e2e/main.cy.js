@@ -87,7 +87,7 @@ describe("Main Page", () => {
       .get("header button")
       .click()
       .get("h1")
-      .contains("rancid tomatillos")
+      .should('contain',"rancid tomatillos")
       .get("header button")
       .should("not.exist")
       .get(".movies-container")
