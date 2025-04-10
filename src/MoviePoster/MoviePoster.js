@@ -14,13 +14,21 @@ function MoviePoster({ id, poster, vote_count, vote }) {
         <div className="message">Click me for more!</div>
       </Link>
       <div className="votes">
-        <button className="upvote" onClick={() => vote(id, "up")}>
+        <button
+          className="upvote"
+          data-cy="upvote"
+          onClick={() => vote(id, "up")}
+        >
           ↑
         </button>
         <p className="vote_count" data-cy="vote_count">
           {vote_count}
         </p>
-        <button className="downvote" onClick={() => vote(id, "down")}>
+        <button
+          className="downvote"
+          data-cy="downvote"
+          onClick={() => vote(id, "down")}
+        >
           ↓
         </button>
       </div>

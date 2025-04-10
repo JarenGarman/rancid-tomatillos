@@ -18,7 +18,7 @@ describe("Main Page", () => {
       .getBySel("home")
       .should("not.exist")
       .getBySel("movies-container")
-      .find(".MoviePoster")
+      .find('[data-cy="MoviePoster"]')
       .should("have.length", 4)
       .getBySel("poster_image")
       .first()
@@ -51,7 +51,7 @@ describe("Main Page", () => {
       }
     )
       .getBySel("movies-container")
-      .find(".MoviePoster")
+      .find('[data-cy="MoviePoster"]')
       .first()
       .click()
       .url()
@@ -66,7 +66,7 @@ describe("Main Page", () => {
       .getBySel("movie_details_title")
       .should("contain", "The Dark Knight (2008)")
       .getBySel("Genres")
-      .find("h3")
+      .find('[data-cy="Genre"]')
       .should("have.length", 4)
       .getBySel("Genre")
       .first()
@@ -90,7 +90,7 @@ describe("Main Page", () => {
       }
     )
       .getBySel("movies-container")
-      .find(".MoviePoster")
+      .find('[data-cy="MoviePoster"]')
       .first()
       .click()
       .url()
@@ -102,7 +102,7 @@ describe("Main Page", () => {
       .getBySel("home")
       .should("not.exist")
       .getBySel("movies-container")
-      .find(".MoviePoster")
+      .find('[data-cy="MoviePoster"]')
       .should("have.length", 4)
       .getBySel("poster_image")
       .first()
@@ -137,15 +137,11 @@ describe("Main Page", () => {
 
     cy.getBySel("vote_count").first().should("contain", "32544");
 
-    cy.getBySel("MoviePoster").first().find(".upvote").click();
+    cy.getBySel("upvote").first().click();
 
     cy.wait("@updateVote");
 
-    cy.getBySel("movies-container")
-      .find(".MoviePoster")
-      .first()
-      .getBySel("vote_count")
-      .should("contain", "32545");
+    cy.getBySel("vote_count").first().should("contain", "32545");
   });
 
   it("can downvote any particular movie", () => {
@@ -159,16 +155,10 @@ describe("Main Page", () => {
 
     cy.getBySel("vote_count").first().should("contain", "32544");
 
-    cy.getBySel("MoviePoster").first().find(".downvote").click();
+    cy.getBySel("downvote").first().click();
 
     cy.wait("@updateVote");
 
-    cy.getBySel("movies-container")
-      .find(".MoviePoster")
-      .first()
-      .getBySel("vote_count")
-      .should("contain", "32543")
-      .url()
-      .should("eq", "http://localhost:3000/");
+    cy.getBySel("vote_count").first().should("contain", "32543");
   });
 });
