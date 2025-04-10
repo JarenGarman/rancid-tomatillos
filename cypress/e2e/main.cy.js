@@ -51,26 +51,20 @@ describe("Movie Details", () => {
       {
         fixture: "movie_posters.json",
       }
-    )
-      .visit("http://localhost:3000/")
+    ).as("getMovieDetails");
+    cy.visit("http://localhost:3000/")
       .url()
       .should("eq", "http://localhost:3000/")
       .getBySel("movies-container")
       .find('[data-cy="MoviePoster"]')
       .first()
       .click()
+      .wait("@getMovieDetails")
       .url()
       .should("eq", "http://localhost:3000/155");
   });
 
   it("displays movie details when poster clicked", () => {
-    cy.intercept(
-      "GET",
-      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155",
-      {
-        fixture: "movie_details.json",
-      }
-    ).as("getMovieDetails");
     cy.getBySel("movie_backdrop")
       .should(
         "have.attr",
