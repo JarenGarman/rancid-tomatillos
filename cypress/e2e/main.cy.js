@@ -109,7 +109,7 @@ describe("Main Page", () => {
       )
       .get(".vote_count")
       .first()
-      .contains("32544")
+      .should('contain',"32544")
       .get(".vote_count")
       .last()
       .should('contain',"27642");
@@ -118,7 +118,7 @@ describe("Main Page", () => {
   it("can upvote any particular movie", () => {
     cy.intercept("PATCH", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155", {
       body: {
-        id: "155",
+        id: 155,
         "poster_path": "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
     "title": "The Dark Knight",
     "vote_count": 32545
@@ -133,16 +133,6 @@ describe("Main Page", () => {
       .first()
       .find(".upvote")
       .click();
-  
-
-    // get(".movies-container")
-    //   .find(".MoviePoster")
-    //   .first()
-    //   .get(".poster_image")
-    //   .first()
-    //   .get(".vote_count")
-    //   .should('contain', '0');
-  
     
     cy.wait("@updateVote");
   
