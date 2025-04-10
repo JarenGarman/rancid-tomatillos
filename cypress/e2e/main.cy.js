@@ -116,14 +116,19 @@ describe("Main Page", () => {
   });
 
   it("can upvote any particular movie", () => {
-    cy.intercept("PATCH", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155")
-  //!! Do I need to add something to patch?
-    cy.visit("http://localhost:3000/");
+    cy.intercept("PATCH", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155", {
+      body: {
+        id: "155",
+        vote_count: 32545
+      },
+    }).as("updateVote");
   
     cy.get(".movies-container")
       .find(".MoviePoster")
       .first()
-      .find(".vote_count")
+      .get(".poster_image")
+      .first()
+      .get(".vote_count")
       .should('contain', '32544');
   
     cy.get(".MoviePoster")
@@ -131,9 +136,11 @@ describe("Main Page", () => {
       .find(".upvote")
       .click();
   
+    cy.wait("@updateVote");
+  
     cy.get(".MoviePoster")
       .first()
       .find(".vote_count")
-      .should('contain', '32594');
+      .should('contain', '32545');
   });
 });
