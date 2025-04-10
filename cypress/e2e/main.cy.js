@@ -37,7 +37,7 @@ describe("Main Page", () => {
       .contains("32544")
       .get(".vote_count")
       .last()
-      .contains("27642");
+      .should('contain',"27642");
   });
 
   it("displays movie details when poster clicked", () => {
@@ -58,13 +58,13 @@ describe("Main Page", () => {
         "https://image.tmdb.org/t/p/original//nMKdUUepR0i5zn0y1T4CsSB5chy.jpg"
       )
       .get("h2")
-      .contains("The Dark Knight (2008)")
+      .should('contain',"The Dark Knight (2008)")
       .get(".Genres")
       .find("h3")
       .should("have.length", 4)
       .get("h3")
       .first()
-      .contains("Drama")
+      .should('contain',"Drama")
       .get("h3")
       .last()
       .contains("Thriller")
