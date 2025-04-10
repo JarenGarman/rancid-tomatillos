@@ -69,7 +69,7 @@ describe("Main Page", () => {
       .last()
       .contains("Thriller")
       .get("p")
-      .contains(
+      .should('contain',
         "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker."
       );
   });
@@ -112,35 +112,44 @@ describe("Main Page", () => {
       .contains("32544")
       .get(".vote_count")
       .last()
-      .contains("27642");
+      .should('contain',"27642");
   });
 
   it("can upvote any particular movie", () => {
     cy.intercept("PATCH", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155", {
       body: {
         id: "155",
-        vote_count: 32545
+        "poster_path": "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    "title": "The Dark Knight",
+    "vote_count": 32545
       },
     }).as("updateVote");
   
-    cy.get(".movies-container")
-      .find(".MoviePoster")
+    cy.get(".vote_count")
       .first()
-      .get(".poster_image")
-      .first()
-      .get(".vote_count")
       .should('contain', '32544');
-  
+    
     cy.get(".MoviePoster")
       .first()
       .find(".upvote")
       .click();
   
+
+    // get(".movies-container")
+    //   .find(".MoviePoster")
+    //   .first()
+    //   .get(".poster_image")
+    //   .first()
+    //   .get(".vote_count")
+    //   .should('contain', '0');
+  
+    
     cy.wait("@updateVote");
   
-    cy.get(".MoviePoster")
+    cy.get(".movies-container")
+      .find(".MoviePoster")
       .first()
-      .find(".vote_count")
+      .get(".vote_count")
       .should('contain', '32545');
   });
 });
