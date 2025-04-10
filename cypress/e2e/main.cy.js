@@ -142,4 +142,32 @@ describe("Main Page", () => {
       .get(".vote_count")
       .should('contain', '32545');
   });
+
+  it("can downvote any particular movie", () => {
+    cy.intercept("PATCH", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155", {
+      body: {
+        id: 155,
+        "poster_path": "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    "title": "The Dark Knight",
+    "vote_count": 32545
+      },
+    }).as("updateVote");
+  
+    cy.get(".vote_count")
+      .first()
+      .should('contain', '32544');
+    
+    cy.get(".MoviePoster")
+      .first()
+      .find(".upvote")
+      .click();
+    
+    cy.wait("@updateVote");
+  
+    cy.get(".movies-container")
+      .find(".MoviePoster")
+      .first()
+      .get(".vote_count")
+      .should('contain', '32545');
+  });
 });
