@@ -12,7 +12,7 @@ describe("Main Page", () => {
 
   it("displays title and movies on page load", () => {
     cy.get("h1")
-      .contains("rancid tomatillos")
+      .should('contain',"rancid tomatillos")
       .get("header button")
       .should("not.exist")
       .get(".movies-container")
