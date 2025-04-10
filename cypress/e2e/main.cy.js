@@ -70,9 +70,8 @@ describe("Movie Details", () => {
       {
         fixture: "movie_details.json",
       }
-    )
-      .getBySel("MovieDetails")
-      .getBySel("movie_backdrop")
+    ).as("getMovieDetails");
+    cy.getBySel("movie_backdrop")
       .should(
         "have.attr",
         "src",
