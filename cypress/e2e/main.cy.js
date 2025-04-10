@@ -15,7 +15,7 @@ describe("Main Page", () => {
 
   it("displays title and movies on page load", () => {
     cy.get("h1")
-      .contains("rancid tomatillos")
+      .should('contain',"rancid tomatillos")
       .get("header a")
       .should("not.exist")
       .get(".movies-container")
@@ -37,10 +37,10 @@ describe("Main Page", () => {
       )
       .get(".vote_count")
       .first()
-      .contains("32544")
+      .should('contain',"32544")
       .get(".vote_count")
       .last()
-      .contains("27642");
+      .should('contain',"27642");
   });
 
   it("displays movie details when poster clicked", () => {
@@ -63,18 +63,18 @@ describe("Main Page", () => {
         "https://image.tmdb.org/t/p/original//nMKdUUepR0i5zn0y1T4CsSB5chy.jpg"
       )
       .get("h2")
-      .contains("The Dark Knight (2008)")
+      .should('contain',"The Dark Knight (2008)")
       .get(".Genres")
       .find("h3")
       .should("have.length", 4)
       .get("h3")
       .first()
-      .contains("Drama")
+      .should('contain',"Drama")
       .get("h3")
       .last()
-      .contains("Thriller")
+      .should('contain',"Thriller")
       .get("p")
-      .contains(
+      .should('contain',
         "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker."
       );
   });
@@ -94,7 +94,8 @@ describe("Main Page", () => {
       .get("header a")
       .click()
       .get("h1")
-      .contains("rancid tomatillos")
+      .should('contain',"rancid tomatillos")
+      .get("header button")
       .get("header a")
       .should("not.exist")
       .get(".movies-container")
@@ -116,10 +117,66 @@ describe("Main Page", () => {
       )
       .get(".vote_count")
       .first()
-      .contains("32544")
+      .should('contain',"32544")
       .get(".vote_count")
       .last()
-      .contains("27642")
+      .should('contain',"27642");
+  });
+
+  it("can upvote any particular movie", () => {
+    cy.intercept("PATCH", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155", {
+      body: {
+        id: 155,
+        "poster_path": "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    "title": "The Dark Knight",
+    "vote_count": 32545
+      },
+    }).as("updateVote");
+  
+    cy.get(".vote_count")
+      .first()
+      .should('contain', '32544');
+    
+    cy.get(".MoviePoster")
+      .first()
+      .find(".upvote")
+      .click();
+    
+    cy.wait("@updateVote");
+  
+    cy.get(".movies-container")
+      .find(".MoviePoster")
+      .first()
+      .get(".vote_count")
+      .should('contain', '32545');
+  });
+
+  it("can downvote any particular movie", () => {
+    cy.intercept("PATCH", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155", {
+      body: {
+        id: 155,
+        "poster_path": "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    "title": "The Dark Knight",
+    "vote_count": 32543
+      },
+    }).as("updateVote");
+  
+    cy.get(".vote_count")
+      .first()
+      .should('contain', '32544');
+    
+    cy.get(".MoviePoster")
+      .first()
+      .find(".downvote")
+      .click();
+    
+    cy.wait("@updateVote");
+  
+    cy.get(".movies-container")
+      .find(".MoviePoster")
+      .first()
+      .get(".vote_count")
+      .should('contain', '32543')
       .url()
       .should("eq", "http://localhost:3000/");
   });
