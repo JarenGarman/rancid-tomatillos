@@ -7,13 +7,16 @@ describe("Main Page", () => {
       "GET",
       "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies",
       posters
-    ).visit("http://localhost:3000/");
+    )
+      .visit("http://localhost:3000/")
+      .url()
+      .should("eq", "http://localhost:3000/");
   });
 
   it("displays title and movies on page load", () => {
     cy.get("h1")
       .should('contain',"rancid tomatillos")
-      .get("header button")
+      .get("header a")
       .should("not.exist")
       .get(".movies-container")
       .find(".MoviePoster")
@@ -55,6 +58,10 @@ describe("Main Page", () => {
     cy.wait("@getMovieDetails"); 
   
     cy.get(".MovieDetails")
+      .click()
+      .url()
+      .should("eq", "http://localhost:3000/155")
+      .get(".MovieDetails")
       .get("img")
       .should(
         "have.attr",
@@ -89,11 +96,14 @@ describe("Main Page", () => {
       .find(".MoviePoster")
       .first()
       .click()
-      .get("header button")
+      .url()
+      .should("eq", "http://localhost:3000/155")
+      .get("header a")
       .click()
       .get("h1")
       .should('contain',"rancid tomatillos")
       .get("header button")
+      .get("header a")
       .should("not.exist")
       .get(".movies-container")
       .find(".MoviePoster")
@@ -173,6 +183,8 @@ describe("Main Page", () => {
       .find(".MoviePoster")
       .first()
       .get(".vote_count")
-      .should('contain', '32543');
+      .should('contain', '32543')
+      .url()
+      .should("eq", "http://localhost:3000/");
   });
 });

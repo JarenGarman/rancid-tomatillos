@@ -14,14 +14,14 @@ header {
   padding: 25px;
 }
 
-header button {
+header a {
   background: none;
   border: none;
   color: white;
   font-size: 3em;
 }
 
-header button:hover {
+header a:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
