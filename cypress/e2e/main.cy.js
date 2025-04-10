@@ -34,7 +34,7 @@ describe("Main Page", () => {
       )
       .get(".vote_count")
       .first()
-      .contains("32544")
+      .should('contain',"32544")
       .get(".vote_count")
       .last()
       .should('contain',"27642");
