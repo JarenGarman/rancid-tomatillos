@@ -3,16 +3,23 @@ import "./MoviePoster.css";
 
 function MoviePoster({ id, poster, vote_count, vote }) {
   return (
-    <section className="MoviePoster">
+    <section className="MoviePoster" data-cy="MoviePoster">
       <Link to={`/${id}`}>
-        <img className="poster_image" src={poster} alt="poster goes here" />
+        <img
+          className="poster_image"
+          data-cy="poster_image"
+          src={poster}
+          alt="poster goes here"
+        />
         <div className="message">Click me for more!</div>
       </Link>
       <div className="votes">
         <button className="upvote" onClick={() => vote(id, "up")}>
           ↑
         </button>
-        <p className="vote_count">{vote_count}</p>
+        <p className="vote_count" data-cy="vote_count">
+          {vote_count}
+        </p>
         <button className="downvote" onClick={() => vote(id, "down")}>
           ↓
         </button>

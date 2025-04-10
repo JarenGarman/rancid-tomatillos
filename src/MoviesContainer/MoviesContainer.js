@@ -14,11 +14,12 @@ function MoviesContainer({ movies, vote }) {
         poster={movie.poster_path}
         vote_count={movie.vote_count}
         vote={vote}
+        data-cy="movie-poster"
       />
     );
   });
 
-  return <section className="movies-container">{movieCards}</section>;
+  return <section className="movies-container" data-cy="movies-container">{movieCards}</section>;
 }
 
 export default MoviesContainer;

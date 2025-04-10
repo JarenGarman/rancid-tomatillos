@@ -13,31 +13,31 @@ describe("Main Page", () => {
   });
 
   it("displays title and movies on page load", () => {
-    cy.get("h1")
+    cy.getBySel("title")
       .should("contain", "rancid tomatillos")
       .getBySel("home")
       .should("not.exist")
-      .get(".movies-container")
+      .getBySel("movies-container")
       .find(".MoviePoster")
       .should("have.length", 4)
-      .get(".poster_image")
+      .getBySel("poster_image")
       .first()
       .should(
         "have.attr",
         "src",
         "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg"
       )
-      .get(".poster_image")
+      .getBySel("poster_image")
       .last()
       .should(
         "have.attr",
         "src",
         "https://image.tmdb.org/t/p/original//d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg"
       )
-      .get(".vote_count")
+      .getBySel("vote_count")
       .first()
       .should("contain", "32544")
-      .get(".vote_count")
+      .getBySel("vote_count")
       .last()
       .should("contain", "27642");
   });
@@ -50,31 +50,31 @@ describe("Main Page", () => {
         fixture: "movie_details.json",
       }
     )
-      .get(".movies-container")
+      .getBySel("movies-container")
       .find(".MoviePoster")
       .first()
       .click()
       .url()
       .should("eq", "http://localhost:3000/155")
-      .get(".MovieDetails")
-      .get("img")
+      .getBySel("MovieDetails")
+      .getBySel("movie_backdrop")
       .should(
         "have.attr",
         "src",
         "https://image.tmdb.org/t/p/original//nMKdUUepR0i5zn0y1T4CsSB5chy.jpg"
       )
-      .get("h2")
+      .getBySel("movie_details_title")
       .should("contain", "The Dark Knight (2008)")
-      .get(".Genres")
+      .getBySel("Genres")
       .find("h3")
       .should("have.length", 4)
-      .get("h3")
+      .getBySel("Genre")
       .first()
       .should("contain", "Drama")
-      .get("h3")
+      .getBySel("Genre")
       .last()
       .should("contain", "Thriller")
-      .get("p")
+      .getBySel("movie_overview")
       .should(
         "contain",
         "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker."
@@ -89,7 +89,7 @@ describe("Main Page", () => {
         fixture: "movie_details.json",
       }
     )
-      .get(".movies-container")
+      .getBySel("movies-container")
       .find(".MoviePoster")
       .first()
       .click()
@@ -97,31 +97,31 @@ describe("Main Page", () => {
       .should("eq", "http://localhost:3000/155")
       .getBySel("home")
       .click()
-      .get("h1")
+      .getBySel("title")
       .should("contain", "rancid tomatillos")
       .getBySel("home")
       .should("not.exist")
-      .get(".movies-container")
+      .getBySel("movies-container")
       .find(".MoviePoster")
       .should("have.length", 4)
-      .get(".poster_image")
+      .getBySel("poster_image")
       .first()
       .should(
         "have.attr",
         "src",
         "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg"
       )
-      .get(".poster_image")
+      .getBySel("poster_image")
       .last()
       .should(
         "have.attr",
         "src",
         "https://image.tmdb.org/t/p/original//d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg"
       )
-      .get(".vote_count")
+      .getBySel("vote_count")
       .first()
       .should("contain", "32544")
-      .get(".vote_count")
+      .getBySel("vote_count")
       .last()
       .should("contain", "27642");
   });
@@ -135,16 +135,16 @@ describe("Main Page", () => {
       }
     ).as("updateVote");
 
-    cy.get(".vote_count").first().should("contain", "32544");
+    cy.getBySel("vote_count").first().should("contain", "32544");
 
-    cy.get(".MoviePoster").first().find(".upvote").click();
+    cy.getBySel("MoviePoster").first().find(".upvote").click();
 
     cy.wait("@updateVote");
 
-    cy.get(".movies-container")
+    cy.getBySel("movies-container")
       .find(".MoviePoster")
       .first()
-      .get(".vote_count")
+      .getBySel("vote_count")
       .should("contain", "32545");
   });
 
@@ -157,16 +157,16 @@ describe("Main Page", () => {
       }
     ).as("updateVote");
 
-    cy.get(".vote_count").first().should("contain", "32544");
+    cy.getBySel("vote_count").first().should("contain", "32544");
 
-    cy.get(".MoviePoster").first().find(".downvote").click();
+    cy.getBySel("MoviePoster").first().find(".downvote").click();
 
     cy.wait("@updateVote");
 
-    cy.get(".movies-container")
+    cy.getBySel("movies-container")
       .find(".MoviePoster")
       .first()
-      .get(".vote_count")
+      .getBySel("vote_count")
       .should("contain", "32543")
       .url()
       .should("eq", "http://localhost:3000/");
