@@ -26,7 +26,11 @@ function App() {
     <main className="App">
       <header>
         <h1>rancid tomatillos</h1>
-        {useMatch("/:id") && <Link to="/">⌂</Link>}
+        {useMatch("/:id") && (
+          <Link to="/" data-cy="home">
+            ⌂
+          </Link>
+        )}
       </header>
       <Routes>
         <Route
