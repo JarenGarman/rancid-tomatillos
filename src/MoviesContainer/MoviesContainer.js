@@ -1,7 +1,7 @@
 import MoviePoster from "../MoviePoster/MoviePoster";
 import "./MoviesContainer.css";
 
-function MoviesContainer({ movies, vote, selectMovie }) {
+function MoviesContainer({ movies, vote }) {
   if (!movies) {
     return <h2>Loading...</h2>;
   }
@@ -14,7 +14,6 @@ function MoviesContainer({ movies, vote, selectMovie }) {
         poster={movie.poster_path}
         vote_count={movie.vote_count}
         vote={vote}
-        selectMovie={selectMovie}
       />
     );
   });
