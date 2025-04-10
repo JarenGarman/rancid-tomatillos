@@ -149,7 +149,7 @@ describe("Main Page", () => {
         id: 155,
         "poster_path": "https://image.tmdb.org/t/p/original//qJ2tW6WMUDux911r6m7haRef0WH.jpg",
     "title": "The Dark Knight",
-    "vote_count": 32545
+    "vote_count": 32543
       },
     }).as("updateVote");
   
@@ -159,7 +159,7 @@ describe("Main Page", () => {
     
     cy.get(".MoviePoster")
       .first()
-      .find(".upvote")
+      .find(".downvote")
       .click();
     
     cy.wait("@updateVote");
@@ -168,6 +168,6 @@ describe("Main Page", () => {
       .find(".MoviePoster")
       .first()
       .get(".vote_count")
-      .should('contain', '32545');
+      .should('contain', '32543');
   });
 });
