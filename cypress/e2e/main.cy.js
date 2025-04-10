@@ -116,9 +116,8 @@ describe("Main Page", () => {
   });
 
   it("can upvote any particular movie", () => {
-    // Intercept the PATCH request and provide an alias for it
     cy.intercept("PATCH", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155")
-  
+  //!! Do I need to add something to patch?
     cy.visit("http://localhost:3000/");
   
     cy.get(".movies-container")
