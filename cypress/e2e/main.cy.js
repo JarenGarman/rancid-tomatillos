@@ -1,12 +1,11 @@
-import details from "../fixtures/movie_details.json";
-import posters from "../fixtures/movie_posters.json";
-
 describe("Main Page", () => {
   beforeEach(() => {
     cy.intercept(
       "GET",
       "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies",
-      posters
+      {
+        fixture: "movie_posters.json",
+      }
     )
       .visit("http://localhost:3000/")
       .url()
@@ -47,7 +46,9 @@ describe("Main Page", () => {
     cy.intercept(
       "GET",
       "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155",
-      details
+      {
+        fixture: "movie_details.json",
+      }
     )
       .get(".movies-container")
       .find(".MoviePoster")
@@ -84,7 +85,9 @@ describe("Main Page", () => {
     cy.intercept(
       "GET",
       "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155",
-      details
+      {
+        fixture: "movie_details.json",
+      }
     )
       .get(".movies-container")
       .find(".MoviePoster")
