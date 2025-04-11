@@ -51,6 +51,13 @@ describe("Movie Details", () => {
       {
         fixture: "movie_posters.json",
       }
+    );
+    cy.intercept(
+      "GET",
+      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155",
+      {
+        fixture: "movie_details.json",
+      }
     ).as("getMovieDetails");
     cy.visit("http://localhost:3000/")
       .url()
@@ -90,14 +97,7 @@ describe("Movie Details", () => {
   });
 
   it("navigates home from movie details when home button clicked", () => {
-    cy.intercept(
-      "GET",
-      "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/155",
-      {
-        fixture: "movie_details.json",
-      }
-    )
-      .getBySel("home")
+    cy.getBySel("home")
       .click()
       .getBySel("title")
       .should("contain", "rancid tomatillos")
