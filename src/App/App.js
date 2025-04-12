@@ -39,7 +39,9 @@ function App() {
           element={<MoviesContainer movies={movies} vote={vote} />}
         />
         <Route path="/:id" element={<MovieDetails />} />
-        <Route />
+        <Route
+          path="*"
+          />
       </Routes>
     </main>
   );
