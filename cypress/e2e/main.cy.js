@@ -44,7 +44,7 @@ describe("Main Page", () => {
 
   it("should show a 404 message for invalid routes", () => {
     cy.visit("http://localhost:3000/potatoes");
-
+    cy.get("[data-cy=error-message]").should("exist")
   })
 });
 
