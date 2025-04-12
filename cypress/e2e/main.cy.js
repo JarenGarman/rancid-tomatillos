@@ -41,6 +41,9 @@ describe("Main Page", () => {
       .last()
       .should("contain", "27642");
   });
+
+  it("should show a 404 message for invalid routes", () => {
+  })
 });
 
 describe("Movie Details", () => {
