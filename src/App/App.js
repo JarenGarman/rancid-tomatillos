@@ -43,7 +43,7 @@ function App() {
           path="*"
           element={
             <section className="error-message">
-              
+              <h2>404: This page doesn't exist</h2>
             </section>
           }
           />
