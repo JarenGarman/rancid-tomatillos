@@ -45,6 +45,7 @@ function App() {
             <section className="error-message">
               <h2>404: This page doesn't exist</h2>
               <p>Sorry, the route you're trying to visit is invalid</p>
+              <Link to="/">Go back home</Link>
             </section>
           }
           />
