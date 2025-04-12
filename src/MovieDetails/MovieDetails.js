@@ -6,12 +6,12 @@ import "./MovieDetails.css";
 function MovieDetails() {
   const id = useParams().id;
   const [movie, setMovie] = useState(null);
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getMovie(id)
       .then((gotMovie) => {
-        if (gotMovie) {
+        if (!gotMovie.error) {
           setMovie(gotMovie);
         } else {
           setError(true);
@@ -30,7 +30,7 @@ function MovieDetails() {
     );
   }
 
-  if (!movie || !movie.release_date) {
+  if (!movie) {
     return <h2>Loading...</h2>;
   }
 
