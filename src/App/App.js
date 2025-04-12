@@ -41,6 +41,11 @@ function App() {
         <Route path="/:id" element={<MovieDetails />} />
         <Route
           path="*"
+          element={
+            <section className="error-message">
+              
+            </section>
+          }
           />
       </Routes>
     </main>
