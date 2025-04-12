@@ -32,12 +32,14 @@ function App() {
           </Link>
         )}
       </header>
+      
       <Routes>
         <Route
           path="/"
           element={<MoviesContainer movies={movies} vote={vote} />}
         />
         <Route path="/:id" element={<MovieDetails />} />
+        <Route />
       </Routes>
     </main>
   );
