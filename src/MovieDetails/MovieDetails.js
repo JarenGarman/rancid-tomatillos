@@ -6,6 +6,7 @@ import "./MovieDetails.css";
 function MovieDetails() {
   const id = useParams().id;
   const [movie, setMovie] = useState(null);
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     getMovie(id).then((gotMovie) => setMovie(gotMovie));
