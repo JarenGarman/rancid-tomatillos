@@ -6,12 +6,12 @@ import "./MovieDetails.css";
 function MovieDetails() {
   const id = useParams().id;
   const [movie, setMovie] = useState(null);
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getMovie(id)
       .then((gotMovie) => {
-        if (gotMovie) {
+        if (!gotMovie.error) {
           setMovie(gotMovie);
         } else {
           setError(true);
@@ -32,16 +32,6 @@ function MovieDetails() {
 
   if (!movie) {
     return <h2>Loading...</h2>;
-  }
-
-  if (!movie.release_date) {
-    return (
-      <section className="error-message" data-cy="error-message">
-        <h2>404: Movie Not Found</h2>
-        <p>Sorry, that movie doesn’t exist.</p>
-        <Link to="/">Go back home</Link>
-      </section>
-    );
   }
 
   return (
