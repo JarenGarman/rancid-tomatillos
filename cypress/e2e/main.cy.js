@@ -41,6 +41,14 @@ describe("Main Page", () => {
       .last()
       .should("contain", "27642");
   });
+
+  it("should show a 404 message for invalid routes", () => {
+    cy.visit("http://localhost:3000/potatoes");
+    cy.getBySel("error-message").should("exist");
+    cy.contains("404");
+    cy.contains("Go back home").click();
+    cy.url().should("eq", "http://localhost:3000/");
+  })
 });
 
 describe("Movie Details", () => {
